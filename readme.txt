@@ -1,2 +1,1 @@
-Originally downloaded from windrealm.com
-Author: Andrew Lim
+A Simple app to demonstrate Web Service and JSON parsing in Android
