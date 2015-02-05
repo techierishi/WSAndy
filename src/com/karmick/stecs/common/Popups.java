@@ -1,6 +1,6 @@
 package com.karmick.stecs.common;
 
-import com.karmick.stecs1.R;
+import com.karmick.stecs.R;
 
 import android.app.AlertDialog;
 import android.content.Context;

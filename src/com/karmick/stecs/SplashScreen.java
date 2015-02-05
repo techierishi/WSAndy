@@ -1,7 +1,5 @@
 package com.karmick.stecs;
 
-import com.karmick.stecs1.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

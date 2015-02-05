@@ -38,7 +38,8 @@ public class SendMessageTask extends AsyncTask<String, String, String> {
 	@Override
 	protected String doInBackground(String... args) {
 
-		if (iNa(ctx)) {
+		// Check if connected to internet
+		if (CC.iNa(ctx)) {
 
 			Log.d("request!", "starting");
 
@@ -65,11 +66,4 @@ public class SendMessageTask extends AsyncTask<String, String, String> {
 		public void onMessageSendUrlCalled(String str);
 	}
 
-	public static boolean iNa(Context ctx) {
-		ConnectivityManager connectivityManager = (ConnectivityManager) ctx
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetworkInfo = connectivityManager
-				.getActiveNetworkInfo();
-		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-	}
 }

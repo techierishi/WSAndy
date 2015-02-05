@@ -8,30 +8,34 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.karmick.stecs.async.GetIncidentsTask;
-import com.karmick.stecs.async.SendMessageTask;
 import com.karmick.stecs.async.GetIncidentsTask.IncidentReceivedListener;
+import com.karmick.stecs.async.SendMessageTask;
 import com.karmick.stecs.async.SendMessageTask.OnMessageSendUrlCalledListener;
+import com.karmick.stecs.common.CC;
 import com.karmick.stecs.common.Popups;
 import com.karmick.stecs.common.Popups.CustomDialogCallback;
-import com.karmick.stecs1.R;
 
 public class IncidentsActivity extends Activity implements
 		IncidentReceivedListener, OnMessageSendUrlCalledListener {
@@ -46,11 +50,6 @@ public class IncidentsActivity extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 		setContentView(R.layout.main);
 
 		mainListView = (ListView) findViewById(R.id.mainListView);
@@ -160,7 +159,8 @@ public class IncidentsActivity extends Activity implements
 		}
 
 		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
 
 			ViewHolder holder = new ViewHolder();
 
@@ -218,6 +218,7 @@ public class IncidentsActivity extends Activity implements
 
 	@Override
 	public void onIncidentReceivedListener(String str) {
+
 		JSONArray jArr = null;
 		try {
 			jArr = new JSONArray(str);
